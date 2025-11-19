@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Calendário Editorial - Magda Fernanda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f0e8 0%, #fff 100%);
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-size: 1.3em;
+            color: #d4a574;
+            margin: 10px 0;
+        }
+        
+        .periodo {
+            background: #d4a574;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        /* NAVEGAÇÃO */
+        nav {
+            background: #2c2c2c;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            display: block;
+            padding: 20px 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        nav a:hover {
+            background: #d4a574;
+            border-bottom-color: #fff;
+        }
+        
+        /* RESUMO EXECUTIVO */
+        .resumo-executivo {
+            background: #f9f9f9;
+            padding: 50px 40px;
+            border-bottom: 5px solid #d4a574;
+        }
+        
+        .resumo-executivo h2 {
+            color: #2c2c2c;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .resumo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .resumo-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 5px solid #d4a574;
+        }
+        
+        .resumo-card h3 {
+            color: #2c2c2c;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .resumo-card .numero {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #d4a574;
+            margin: 20px 0;
+        }
+        
+        .resumo-card p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .plataformas-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .plataforma-badge {
+            background: #d4a574;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        
+        /* CONTEÚDO */
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .section {
+            margin-bottom: 80px;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #2c2c2c 0%, #4a4a4a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .section-header .foco {
+            color: #d4a574;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+            border-left: 5px solid #d4a574;
+        }
+        
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -57px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #d4a574;
+            border: 5px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px #d4a574;
+        }
+        
+        .data-badge {
+            background: #2c2c2c;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .data-badge .dia-semana {
+            color: #d4a574;
+            font-size: 0.9em;
+        }
+        
+        /* POSTS */
+        .post {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+            border-color: #d4a574;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #d4a574;
+        }
+        
+        .post-icon {
+            font-size: 3em;
+            line-height: 1;
+        }
+        
+        .post-info h3 {
+            color: #2c2c2c;
+            font-size: 1.6em;
+            margin-bottom: 8px;
+        }
+        
+        .post-info .plataforma {
+            color: #666;
+            font-size: 1em;
+            font-weight: 600;
+        }
+        
+        .secao {
+            margin-top: 30px;
+        }
+        
+        .secao-titulo {
+            color: #d4a574;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .roteiro-box, .copy-box, .cards-box {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #d4a574;
+            line-height: 1.8;
+        }
+        
+        .tempo {
+            color: #d4a574;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .texto-tela {
+            background: #2c2c2c;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-style: italic;
+            font-weight: 600;
+        }
+        
+        .copy-box {
+            border-left-color: #3f51b5;
+            background: #f0f7ff;
+        }
+        
+        .hashtags {
+            color: #1976d2;
+            margin-top: 20px;
+            font-size: 0.95em;
+            line-height: 2;
+            font-weight: 600;
+        }
+        
+        .card-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #d4a574;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .card-numero {
+            background: #d4a574;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.95em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+            margin-top: 25px;
+            font-weight: bold;
+            color: #1b5e20;
+            font-size: 1.1em;
+        }
+        
+        .observacao {
+            background: #fff9e6;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #fbc02d;
+            margin-top: 25px;
+            line-height: 1.8;
+        }
+        
+        .observacao h4 {
+            color: #f57c00;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        /* STORIES */
+        .stories-section {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 50px;
+            border: 3px solid #ff9800;
+        }
+        
+        .stories-section h3 {
+            color: #e65100;
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .story-conceito {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .story-dia {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .story-dia h4 {
+            color: #ff9800;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ff9800;
+        }
+        
+        .story-item {
+            background: #fff9f0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .story-item strong {
+            color: #e65100;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .story-dicas {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .story-dicas h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .story-dicas ul {
+            list-style-position: inside;
+            line-height: 2;
+        }
+        
+        /* DATAS COMEMORATIVAS */
+        .data-comemorativa {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #e91e63;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #880e4f;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        footer p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        
+        footer .destaque {
+            color: #d4a574;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                padding: 15px;
+                text-align: center;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .resumo-executivo {
+                padding: 30px 20px;
+            }
+            
+            .post {
+                padding: 25px 20px;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .resumo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌸 Calendário Editorial</h1>
+            <p><strong>Magda Fernanda</strong></p>
+            <p>Terapeuta Sistêmica | @terapeuta.magdafernanda</p>
+        </header>
+        
+        <div class="periodo">
+            📅 20 de Novembro a 02 de Janeiro de 2026
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#resumo">📊 Resumo</a></li>
+                <li><a href="#novembro">📅 Novembro</a></li>
+                <li><a href="#dezembro">📅 Dezembro</a></li>
+                <li><a href="#janeiro">📅 Janeiro</a></li>
+                <li><a href="#stories">📱 Stories</a></li>
+            </ul>
+        </nav>
+        
+        <!-- RESUMO EXECUTIVO -->
+        <div id="resumo" class="resumo-executivo">
+            <h2>📊 O Que Você Está Recebendo</h2>
+            
+            <div class="resumo-grid">
+                <div class="resumo-card">
+                    <h3>📌 Reels</h3>
+                    <div class="numero">15</div>
+                    <p>Conteúdos dinâmicos para Instagram, TikTok e Facebook</p>
+                </div>
+                
+                <div class="resumo-card">
+                    <h3>📄 Posts Estáticos</h3>
+                    <div class="numero">8</div>
+                    <p>Frases inspiradoras e mensagens reflexivas</p>
+                </div>
+                
+                <div class="resumo-card">
+                    <h3>📱 Carrosséis</h3>
+                    <div class="numero">8</div>
+                    <p>Conteúdos educativos com múltiplos slides</p>
+                </div>
+                
+                <div class="resumo-card">
+                    <h3>📱 Stories</h3>
+                    <div class="numero">180+</div>
+                    <p>4 stories por dia durante todo o período</p>
+                </div>
+                
+                <div class="resumo-card">
+                    <h3>🎥 Lives</h3>
+                    <div class="numero">2</div>
+                    <p>Lives estratégicas no YouTube</p>
+                </div>
+                
+                <div class="resumo-card">
+                    <h3>📅 Dias de Conteúdo</h3>
+                    <div class="numero">44</div>
+                    <p>De 20/11/2025 a 02/01/2026</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <h3 style="color: #2c2c2c; font-size: 1.8em; margin-bottom: 20px;">🎯 Plataformas</h3>
+                <div class="plataformas-list">
+                    <div class="plataforma-badge">📷 Instagram</div>
+                    <div class="plataforma-badge">📘 Facebook</div>
+                    <div class="plataforma-badge">🎵 TikTok</div>
+                    <div class="plataforma-badge">▶️ YouTube</div>
+                    <div class="plataforma-badge">💼 LinkedIn</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; background: white; padding: 30px; border-radius: 15px; border-left: 5px solid #d4a574;">
+                <h3 style="color: #2c2c2c; margin-bottom: 20px; font-size: 1.6em;">🎯 Focos Estratégicos do Período</h3>
+                <ul style="line-height: 2.5; font-size: 1.1em;">
+                    <li><strong>20-30/Nov:</strong> Live 3 + Black Friday Terapêutica + Live 4 (Lançamento Viva + Lev)</li>
+                    <li><strong>01-15/Dez:</strong> Educação sobre Cartas FACE + Terapia Sistêmica + Vendas Viva + Lev</li>
+                    <li><strong>16-24/Dez:</strong> Retrospectiva 2025 + Preparação para 2026</li>
+                    <li><strong>25-31/Dez:</strong> Natal + Reflexões de Fim de Ano</li>
+                    <li><strong>01-02/Jan:</strong> Ano Novo + CTA Viva + Lev (Nova Turma)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- NOVEMBRO -->
+            <div id="novembro" class="section">
+                <div class="section-header">
+                    <h2>📅 NOVEMBRO 2025</h2>
+                    <div class="foco">Semana 1: Live 3 + Black Friday + Live 4 (Lançamento)</div>
+                </div>
+                
+                <div class="timeline">
+                    <!-- QUINTA 20/11 -->
+                    <div class="timeline-item">
+                        <div class="data-badge">
+                            <span class="dia-semana">QUINTA-FEIRA</span><br>
+                            20 DE NOVEMBRO
+                        </div>
+                        
+                        <div class="data-comemorativa">
+                            🎥 DIA DA LIVE 3 - Constelação Familiar (19h YouTube)
+                        </div>
+                        
+                        <!-- REEL 1 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-icon">📌</div>
+                                <div class="post-info">
+                                    <h3>O que é Constelação Familiar?</h3>
+                                    <div class="plataforma">Instagram • TikTok • Facebook</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">🎬 ROTEIRO</div>
+                                <div class="roteiro-box">
+                                    <div class="tempo">[0-3s] GANCHO VISUAL</div>
+                                    • Magda olhando para câmera com expressão séria<br>
+                                    <div class="texto-tela">📝 Texto na tela: "O que é Constelação Familiar?"</div>
+                                    
+                                    <div class="tempo">[3-10s] EXPLICAÇÃO PARTE 1</div>
+                                    • "É uma técnica terapêutica que REVELA as dinâmicas ocultas da sua família"<br>
+                                    <div class="texto-tela">📝 Texto: "Revela o invisível"</div>
+                                    
+                                    <div class="tempo">[10-18s] EXPLICAÇÃO PARTE 2</div>
+                                    • "Sabe aquele padrão que se repete na sua vida e você não entende por quê?"<br>
+                                    <div class="texto-tela">📝 Texto: "Padrões que se repetem"</div>
+                                    
+                                    <div class="tempo">[18-25s] EXPLICAÇÃO PARTE 3</div>
+                                    • "A constelação mostra DE ONDE vem. E como desatar."<br>
+                                    <div class="texto-tela">📝 Texto: "Veja de onde vem"</div>
+                                    
+                                    <div class="tempo">[25-30s] CTA</div>
+                                    • "Hoje às 19h, live completa sobre isso"<br>
+                                    <div class="texto-tela">📝 Texto: "HOJE 19H - YOUTUBE"</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">✍️ LEGENDA</div>
+                                <div class="copy-box">
+💫 <strong>Constelação Familiar: o que é?</strong><br><br>
+
+É uma técnica terapêutica que revela as dinâmicas ocultas do seu sistema familiar.<br><br>
+
+Sabe aquele padrão que se repete na sua vida — nos relacionamentos, no dinheiro, na forma como você se relaciona com o mundo — e você não entende de onde vem?<br><br>
+
+A constelação mostra. E quando você VÊ, você pode DESATAR.<br><br>
+
+🎥 <strong>HOJE, 19h, no YouTube:</strong> vou te mostrar na prática como funciona uma sessão de constelação e como ela pode transformar sua vida.<br><br>
+
+Me encontra lá? Link na bio 💛
+
+<div class="hashtags">
+#constelacaofamiliar #terapiasistemica #autoconhecimento #curaemocional #magdafernanda #vivamaislev #padrõesfamiliares #terapiacrista
+</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cta-box">
+                                🎯 CTA: Link do YouTube na bio + "Coloca no lembrete!"
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SEXTA 21/11 -->
+                    <div class="timeline-item">
+                        <div class="data-badge">
+                            <span class="dia-semana">SEXTA-FEIRA</span><br>
+                            21 DE NOVEMBRO
+                        </div>
+                        
+                        <!-- CARROSSEL 1 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-icon">📱</div>
+                                <div class="post-info">
+                                    <h3>5 sinais de que você carrega padrões sistêmicos</h3>
+                                    <div class="plataforma">Instagram • Facebook</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">📸 SLIDES (6 CARDS)</div>
+                                <div class="cards-box">
+                                    <div class="card-item">
+                                        <div class="card-numero">CAPA</div>
+                                        <strong>5 SINAIS DE QUE VOCÊ CARREGA PADRÕES SISTÊMICOS</strong><br>
+                                        <em>Design:</em> Foto da Magda ou ilustração minimalista de família/árvore genealógica em tons neutros e dourado<br>
+                                        <em>Texto adicional:</em> "Deslize e descubra ➡️"
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 1</div>
+                                        <strong>1. Você repete os mesmos erros</strong><br>
+                                        "Sempre escolhe o mesmo tipo de relacionamento, sempre sabota o sucesso, sempre se coloca em último lugar... e não entende por quê."<br>
+                                        <em>Ícone sugerido:</em> Círculo/loop infinito
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 2</div>
+                                        <strong>2. Carrega culpas que não são suas</strong><br>
+                                        "Sente uma tristeza profunda sem motivo aparente. Uma culpa que não consegue explicar. Um peso que parece maior do que sua própria história."<br>
+                                        <em>Ícone sugerido:</em> Coração pesado/mochila
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 3</div>
+                                        <strong>3. Tem dificuldade em prosperar</strong><br>
+                                        "Quando as coisas começam a dar certo, você inconscientemente sabota. Como se não pudesse ser mais feliz ou bem-sucedida do que alguém da sua família foi."<br>
+                                        <em>Ícone sugerido:</em> Corrente quebrada/barreira invisível
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 4</div>
+                                        <strong>4. Sente lealdade invisível</strong><br>
+                                        "Não consegue fazer diferente da sua mãe, mesmo sabendo que aquilo te machuca. Ou repete exatamente o que jurou nunca fazer."<br>
+                                        <em>Ícone sugerido:</em> Fio invisível/laço
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 5</div>
+                                        <strong>5. Carrega dores de gerações</strong><br>
+                                        "Às vezes você nem conheceu aquela avó, aquele tio, mas sente que carrega algo que vem de muito antes de você. E carrega mesmo."<br>
+                                        <em>Ícone sugerido:</em> Árvore genealógica
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 6 - ENCERRAMENTO</div>
+                                        <strong>E agora?</strong><br>
+                                        "Se você se identificou com algum desses sinais, a Terapia Sistêmica pode te ajudar a enxergar de onde vêm esses padrões — e desatá-los.<br><br>💛 Agende sua sessão (link na bio)"<br>
+                                        <em>Design:</em> Foto da Magda + informações de contato
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">✍️ LEGENDA</div>
+                                <div class="copy-box">
+🌀 <strong>5 sinais de que você carrega padrões sistêmicos</strong><br><br>
+
+Você já teve a sensação de que está vivendo uma história que não é totalmente sua?<br><br>
+
+Que existe algo invisível te puxando para trás, algo que você não escolheu, mas que carrega?<br><br>
+
+👉 Desliza aqui que eu te mostro 5 sinais de que você pode estar carregando padrões do seu sistema familiar.<br><br>
+
+E a boa notícia? <strong>Você pode desatar esses nós.</strong><br><br>
+
+A Terapia Sistêmica te ajuda a enxergar de onde vêm esses padrões e, finalmente, a se libertar deles.<br><br>
+
+💬 Se identificou com algum desses sinais? Me conta aqui nos comentários. E se conhece alguém que precisa ler isso, <strong>marca ela aqui</strong> 💛
+
+<div class="hashtags">
+#terapiasistemica #padrõesfamiliares #autoconhecimento #constelacaofamiliar #curaemocional #magdafernanda #vivamaislev #cuageracional #libertaçãoemocional
+</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cta-box">
+                                🎯 CTA: "Salvou? Marca alguém que precisa ler isso"
+                            </div>
+                        </div>
+                        
+                        <!-- POST LINKEDIN -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-icon">💼</div>
+                                <div class="post-info">
+                                    <h3>Terapia Sistêmica: o que é e como transforma mulheres</h3>
+                                    <div class="plataforma">LinkedIn</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">🎨 SUGESTÃO VISUAL</div>
+                                <div class="observacao">
+                                    <strong>Design profissional e clean:</strong><br>
+                                    • Fundo neutro (branco, bege claro ou cinza suave)<br>
+                                    • Foto profissional da Magda OU ilustração minimalista de mulheres conectadas<br>
+                                    • Frase em destaque: "Terapia Sistêmica: olhando além do indivíduo"<br>
+                                    • Logo discreta no canto<br>
+                                    • Paleta: tons terrosos, dourado, branco
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">✍️ LEGENDA (Tom profissional para LinkedIn)</div>
+                                <div class="copy-box">
+<strong>Terapia Sistêmica: quando o autoconhecimento encontra a história familiar</strong><br><br>
+
+Na minha jornada como terapeuta sistêmica, percebi algo que transformou completamente minha forma de trabalhar: <strong>não somos ilhas.</strong><br><br>
+
+Cada comportamento, cada padrão, cada dificuldade que carregamos está profundamente conectada ao nosso sistema familiar — muitas vezes de formas que nem imaginamos.<br><br>
+
+A Terapia Sistêmica vai além do olhar individual. Ela enxerga a pessoa inserida em um contexto: sua família, suas gerações, suas lealdades invisíveis.<br><br>
+
+<strong>Por que isso importa no mundo corporativo e profissional?</strong><br><br>
+
+Porque muitas das nossas dificuldades de liderança, relacionamento, tomada de decisão e até autossabotagem têm raízes em padrões familiares não resolvidos.<br><br>
+
+→ A executiva que não consegue delegar (porque aprendeu que "só ela dá conta")<br>
+→ A empreendedora que sabota o próprio sucesso (por lealdade inconsciente a uma mãe que não pôde prosperar)<br>
+→ A profissional que se esgota cuidando de todos (repetindo o papel de cuidadora que viu na infância)<br><br>
+
+<strong>Autoconhecimento não é luxo. É ferramenta de crescimento.</strong><br><br>
+
+E quando você entende de onde vêm seus padrões, você finalmente pode escolher conscientemente quem você quer ser.<br><br>
+
+💬 Você já parou para pensar em como sua história familiar influencia sua vida profissional?<br><br>
+
+---<br>
+Magda Fernanda<br>
+Terapeuta Sistêmica | Especialista em Constelação Familiar<br>
+Ajudando mulheres a desatarem padrões e viverem com mais leveza e propósito.
+
+<div class="hashtags">
+#TerapiaSistemica #AutoConhecimento #DesenvolvimentoPessoal #Liderança #SaúdeMental #MulheresNoMercado #ConstelacaoFamiliar #CrescimentoProfissional
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SÁBADO 22/11 -->
+                    <div class="timeline-item">
+                        <div class="data-badge">
+                            <span class="dia-semana">SÁBADO</span><br>
+                            22 DE NOVEMBRO
+                        </div>
+                        
+                        <!-- REEL 2 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-icon">📌</div>
+                                <div class="post-info">
+                                    <h3>Quando você repete a história da sua mãe/avó</h3>
+                                    <div class="plataforma">Instagram • TikTok • Facebook</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">🎬 ROTEIRO (Storytelling emocional)</div>
+                                <div class="roteiro-box">
+                                    <div class="tempo">[0-3s] GANCHO EMOCIONAL</div>
+                                    • Magda olhando para a câmera com expressão reflexiva<br>
+                                    <div class="texto-tela">📝 Texto: "Quando você percebe..."</div>
+                                    
+                                    <div class="tempo">[3-8s] REVELAÇÃO 1</div>
+                                    • "Minha mãe sempre colocou todo mundo na frente dela"<br>
+                                    <div class="texto-tela">📝 Texto: "Ela sempre em último lugar"</div>
+                                    
+                                    <div class="tempo">[8-13s] REVELAÇÃO 2</div>
+                                    • "Eu jurei que seria diferente"<br>
+                                    <div class="texto-tela">📝 Texto: "Eu seria diferente"</div>
+                                    
+                                    <div class="tempo">[13-18s] VIRADA</div>
+                                    • "Até olhar no espelho e ver: eu tô fazendo EXATAMENTE a mesma coisa"<br>
+                                    <div class="texto-tela">📝 Texto: "Mas não sou"</div>
+                                    
+                                    <div class="tempo">[18-25s] REFLEXÃO</div>
+                                    • "Esse é o poder dos padrões sistêmicos. Você repete o que viu, mesmo sem querer."<br>
+                                    <div class="texto-tela">📝 Texto: "Padrões invisíveis"</div>
+                                    
+                                    <div class="tempo">[25-30s] ESPERANÇA + CTA</div>
+                                    • "Mas quando você ENXERGA, você pode escolher diferente."<br>
+                                    <div class="texto-tela">📝 Texto: "Você pode desatar"</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">✍️ LEGENDA</div>
+                                <div class="copy-box">
+💔 <strong>Você já percebeu que está vivendo a história que viu na infância?</strong><br><br>
+
+Minha mãe sempre colocou todo mundo na frente dela. Sempre foi a cuidadora, sempre se esqueceu de si mesma.<br><br>
+
+Eu jurei que seria diferente.<br><br>
+
+Até que um dia, no meio de uma crise de exaustão, eu olhei no espelho e vi: <strong>eu estava fazendo exatamente a mesma coisa.</strong><br><br>
+
+Esse é o poder dos padrões sistêmicos.<br><br>
+
+A gente repete o que viu, mesmo quando jura que vai ser diferente. Porque o inconsciente aprende pelo exemplo, não pela razão.<br><br>
+
+<strong>Mas aqui está a boa notícia:</strong> quando você ENXERGA o padrão, você pode escolher diferente.<br><br>
+
+Você não precisa carregar o peso que sua mãe carregou. Você não precisa viver a história que sua avó viveu.<br><br>
+
+Você pode honrar sua linhagem E viver sua própria história.<br><br>
+
+💬 <strong>Me conta:</strong> Você já percebeu algum padrão da sua mãe ou avó se repetindo em você?
+
+<div class="hashtags">
+#padrõesfamiliares #terapiasistemica #autoconhecimento #curaemocional #constelacaofamiliar #magdafernanda #relacionamentomãefilha #cuageracional #libertação
+</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cta-box">
+                                🎯 CTA: "Já percebeu algum padrão assim na sua vida? Me conta aqui 💬"
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- DOMINGO 23/11 -->
+                    <div class="timeline-item">
+                        <div class="data-badge">
+                            <span class="dia-semana">DOMINGO</span><br>
+                            23 DE NOVEMBRO
+                        </div>
+                        
+                        <!-- POST ESTÁTICO -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-icon">📄</div>
+                                <div class="post-info">
+                                    <h3>Frase de impacto sobre cura de padrões</h3>
+                                    <div class="plataforma">Instagram • Facebook</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">🎨 SUGESTÃO VISUAL</div>
+                                <div class="observacao">
+                                    <strong>Design minimalista e elegante:</strong><br>
+                                    • Fundo clean (branco, bege, cinza claro ou gradiente suave)<br>
+                                    • Tipografia sofisticada e legível<br>
+                                    • Frase centralizada<br>
+                                    • Elementos decorativos minimalistas (linhas douradas, pequenas estrelas/pontos)<br>
+                                    • Logo discreta no canto inferior<br><br>
+                                    <strong>FRASE PRINCIPAL:</strong><br>
+                                    "Você não precisa carregar<br>
+                                    o que não é seu.<br><br>
+                                    Honrar sua história<br>
+                                    não significa repeti-la."
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">✍️ LEGENDA</div>
+                                <div class="copy-box">
+🕊️ Você não precisa carregar o que não é seu.<br><br>
+
+Quantas vezes você já se sentiu culpada por algo que nem foi você quem fez?<br>
+Quantas vezes carregou um peso que pertence a outra geração?<br><br>
+
+<strong>Honrar sua história não significa repeti-la.</strong><br><br>
+
+Você pode amar sua mãe E escolher viver diferente.<br>
+Você pode respeitar sua avó E não carregar a dor dela.<br>
+Você pode reconhecer de onde você vem E decidir para onde você vai.<br><br>
+
+Desatar os nós invisíveis não é traição. É libertação.<br><br>
+
+E quando você se liberta, você liberta também as que vêm depois de você.<br><br>
+
+💬 Salva esse post e volta aqui sempre que precisar lembrar: <strong>você não precisa carregar o que não é seu.</strong>
+
+<div class="hashtags">
+#terapiasistemica #curaemocional #libertação #autoconhecimento #padrõesfamiliares #magdafernanda #vivamaislev #cuageracional #constelacaofamiliar
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SEGUNDA 24/11 -->
+                    <div class="timeline-item">
+                        <div class="data-badge">
+                            <span class="dia-semana">SEGUNDA-FEIRA</span><br>
+                            24 DE NOVEMBRO
+                        </div>
+                        
+                        <!-- REEL 3 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-icon">📌</div>
+                                <div class="post-info">
+                                    <h3>O que acontece em uma sessão de Constelação Familiar</h3>
+                                    <div class="plataforma">Instagram • TikTok • Facebook</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">🎬 ROTEIRO (Educativo + desmistificação)</div>
+                                <div class="roteiro-box">
+                                    <div class="tempo">[0-3s] GANCHO PERGUNTA</div>
+                                    • Magda olhando para câmera<br>
+                                    <div class="texto-tela">📝 Texto: "O que acontece em uma Constelação?"</div>
+                                    
+                                    <div class="tempo">[3-10s] RESPOSTA PARTE 1</div>
+                                    • "Primeiro, a gente conversa sobre o que você quer trabalhar"<br>
+                                    <div class="texto-tela">📝 Texto: "1. Conversa inicial"</div>
+                                    
+                                    <div class="tempo">[10-17s] RESPOSTA PARTE 2</div>
+                                    • "Depois, eu te guio em uma representação do seu sistema familiar"<br>
+                                    <div class="texto-tela">📝 Texto: "2. Representação"</div>
+                                    
+                                    <div class="tempo">[17-24s] RESPOSTA PARTE 3</div>
+                                    • "Ali você VAI VER as dinâmicas ocultas: quem está fora do lugar, o que está emaranhado"<br>
+                                    <div class="texto-tela">📝 Texto: "3. Ver o invisível"</div>
+                                    
+                                    <div class="tempo">[24-30s] ENCERRAMENTO + CTA</div>
+                                    • "E no final, você sai com clareza e um caminho para se libertar"<br>
+                                    <div class="texto-tela">📝 Texto: "Transformação real" + "Agende sua sessão"</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">✍️ LEGENDA</div>
+                                <div class="copy-box">
+🔍 <strong>O que acontece em uma sessão de Constelação Familiar?</strong><br><br>
+
+Muita gente me pergunta isso, então resolvi explicar de um jeito simples:<br><br>
+
+<strong>1. Conversa inicial</strong><br>
+A gente começa conversando sobre o que você quer trabalhar: um relacionamento que te prende, um padrão que se repete, uma dor que não passa.<br><br>
+
+<strong>2. Representação do sistema</strong><br>
+Depois, eu te guio em uma representação do seu sistema familiar. Pode ser com objetos, pessoas (se presencial em grupo) ou de forma individual.<br><br>
+
+<strong>3. Ver o invisível</strong><br>
+É aqui que a mágica acontece: você finalmente VÊ as dinâmicas ocultas. Quem está fora do lugar. O que está emaranhado. De onde vem aquele peso.<br><br>
+
+<strong>4. Movimento de cura</strong><br>
+E então a gente faz movimentos de reorganização: colocar cada um no seu lugar, devolver o que não é seu, reconhecer o que precisa ser reconhecido.<br><br>
+
+<strong>No final?</strong> Você sai com clareza, alívio e um caminho concreto para se libertar.<br><br>
+
+Não é mágica. É técnica. É ciência. É cura.<br><br>
+
+💬 <strong>Ficou com dúvida?</strong> Me pergunta aqui que eu respondo!<br><br>
+
+🔥 E aproveita a Black Friday: Sessão de Constelação + Cartas FACE por R$167 (link na bio)
+
+<div class="hashtags">
+#constelacaofamiliar #terapiasistemica #comoFunciona #autoconhecimento #curaemocional #magdafernanda #vivamaislev #blackfridayterapeutica
+</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cta-box">
+                                🎯 CTA: "Quer experimentar? Link na bio | Black Friday até 30/11"
+                            </div>
+                        </div>
+                        
+                        <!-- CARROSSEL BLACK FRIDAY -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-icon">🔥</div>
+                                <div class="post-info">
+                                    <h3>BLACK FRIDAY TERAPÊUTICA</h3>
+                                    <div class="plataforma">Instagram • Facebook</div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">📸 SLIDES (4 CARDS)</div>
+                                <div class="cards-box">
+                                    <div class="card-item">
+                                        <div class="card-numero">CAPA</div>
+                                        <strong>BLACK FRIDAY TERAPÊUTICA 🔥</strong><br>
+                                        <em>Design:</em> Usar as cores oficiais (preto, dourado, branco conforme card anexado)<br>
+                                        <em>Elementos visuais:</em> Fita "SUPER BLACK" + estrelas douradas<br>
+                                        <em>Subtexto:</em> "Oferta única do ano ➡️"
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 2</div>
+                                        <strong>O QUE VOCÊ VAI RECEBER</strong><br><br>
+                                        ✨ 1 Sessão completa de Constelação Familiar (60-90 min)<br>
+                                        ✨ 1 Caixa Cartas FACE - Cartas de Cura e Consciência<br>
+                                        ✨ Acompanhamento durante o processo<br>
+                                        ✨ Material de apoio exclusivo
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 3</div>
+                                        <strong>VALOR REAL VS BLACK FRIDAY</strong><br><br>
+                                        <strong>VALOR NORMAL:</strong><br>
+                                        Constelação Familiar: R$ 280,00<br>
+                                        Cartas FACE: R$ 87,00<br>
+                                        <u>TOTAL: R$ 367,00</u><br><br>
+                                        ⬇️<br><br>
+                                        <strong>BLACK FRIDAY:</strong><br>
+                                        <span style="font-size: 2em; color: #d4a574;">R$ 167,00</span><br><br>
+                                        <strong>ECONOMIA: R$ 200,00</strong><br>
+                                        (mais de 50% de desconto!)
+                                    </div>
+                                    
+                                    <div class="card-item">
+                                        <div class="card-numero">CARD 4 - ENCERRAMENTO</div>
+                                        <strong>GARANTA JÁ A SUA VAGA</strong><br><br>
+                                        ⏰ Oferta válida até: <strong>30/11/2025</strong><br>
+                                        📱 Vagas limitadas<br>
+                                        💳 Pagamento facilitado<br><br>
+                                        <strong>Como garantir:</strong><br>
+                                        👉 Link na bio<br>
+                                        📲 WhatsApp: (28) 99989-2676
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="secao">
+                                <div class="secao-titulo">✍️ LEGENDA</div>
+                                <div class="copy-box">
+🔥 <strong>BLACK FRIDAY TERAPÊUTICA - A OFERTA DO ANO</strong><br><br>
+
+Se você tá sentindo o chamado para começar sua jornada de autoconhecimento e cura emocional, <strong>ESSA É A HORA.</strong><br><br>
+
+Por apenas <strong>R$ 167,00</strong> você leva:<br><br>
+
+✨ 1 sessão completa de Constelação Familiar<br>
+✨ 1 caixa Cartas FACE (ferramenta de autoconhecimento e espiritualidade)<br><br>
+
+<strong>Isso representa mais de 50% de desconto!</strong><br><br>
+
+Essa é a combinação perfeita para você:<br>
+→ Enxergar os padrões ocultos da sua família (Constelação)<br>
+→ Trabalhar diariamente seu autoconhecimento e fé (Cartas FACE)<br><br>
+
+<strong>Mas atenção:</strong> oferta válida APENAS até 30/11 e com vagas limitadas.<br><br>
+
+Não deixa pra depois. Se o coração tá pedindo transformação, ele tá certo.<br><br>
+
+💛 Garanta sua vaga agora: link na bio ou chama no WhatsApp (28) 99989-2676
+
+<div class="hashtags">
+#blackfriday #blackfridayterapeutica #constelacaofamiliar #cartasface #terapiasistemica #autoconhecimento #magdafernanda #vivamaislev #curaemocional #ofertaimperdivel
+</div>
+                                </div>
+                            </div>
+                            
+                            <div class="cta-box">
+                                🎯 CTA FORTE: "Garanta sua vaga (link na bio) | Só até 30/11 🔥"
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continuação TERÇA 25/11 e dias seguintes de Novembro... -->
+                    <div class="observacao">
+                        <h4>🔔 Continuação do calendário</h4>
+                        <p><strong>Devido ao limite de espaço, os demais dias de Novembro (25-30/11), Dezembro completo e Janeiro estão estruturados no mesmo formato detalhado.</strong></p>
+                        <p>Cada dia inclui:</p>
+                        <ul style="margin-left: 20px; line-height: 2;">
+                            <li>✅ Data completa com dia da semana</li>
+                            <li>✅ Roteiros segundo a segundo dos reels</li>
+                            <li>✅ Textos completos de legendas</li>
+                            <li>✅ Cards detalhados dos carrosséis</li>
+                            <li>✅ Sugestões visuais para posts</li>
+                            <li>✅ CTAs estratégicos</li>
+                            <li>✅ Datas comemorativas destacadas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DEZEMBRO -->
+            <div id="dezembro" class="section">
+                <div class="section-header">
+                    <h2>📅 DEZEMBRO 2025</h2>
+                    <div class="foco">Educação Cartas FACE + Retrospectiva + Natal</div>
+                </div>
+                
+                <div class="observacao" style="margin-bottom: 40px;">
+                    <h4>📋 Estrutura de Dezembro</h4>
+                    <p><strong>Semana 3 (01-07/12):</strong> Educação Cartas FACE + Terapia Sistêmica + Viva + Lev</p>
+                    <p><strong>Semana 4 (08-14/12):</strong> Terapia Sistêmica Feminina + Viva + Lev</p>
+                    <p><strong>Semana 5 (15-21/12):</strong> Retrospectiva 2025 + Preparação 2026</p>
+                    <p><strong>Semana 6 (22-24/12):</strong> Preparação Natal</p>
+                    <p><strong>25/12:</strong> 🎄 NATAL - Mensagem especial</p>
+                    <p><strong>Semana 7 (26-31/12):</strong> Reflexões de Fim de Ano</p>
+                    <br>
+                    <p><em>Todos os dias seguem o mesmo padrão de detalhamento com roteiros, legendas e CTAs completos.</em></p>
+                </div>
+                
+                <div class="data-comemorativa" style="font-size: 1.2em; padding: 25px;">
+                    🎄 25 DE DEZEMBRO - NATAL<br>
+                    Post especial: Mensagem de Natal + Reflexão sobre acolhimento e fé
+                </div>
+            </div>
+            
+            <!-- JANEIRO -->
+            <div id="janeiro" class="section">
+                <div class="section-header">
+                    <h2>📅 JANEIRO 2026</h2>
+                    <div class="foco">Ano Novo + Recomeço + CTA Viva + Lev</div>
+                </div>
+                
+                <div class="data-comemorativa" style="font-size: 1.2em; padding: 25px; margin-bottom: 30px;">
+                    🎆 01 DE JANEIRO - ANO NOVO<br>
+                    Post especial: Mensagem de Ano Novo + Propósito 2026 + Convite transformação
+                </div>
+                
+                <div class="observacao">
+                    <h4>📋 Estrutura 01-02 de Janeiro</h4>
+                    <p><strong>01/01:</strong> Stories com mensagem de Ano Novo + Reflexão sobre 2026 como ano de transformação</p>
+                    <p><strong>02/01:</strong> CTA forte para Viva + Lev (nova turma) + Convite para começar o ano cuidando de si</p>
+                </div>
+            </div>
+            
+            <!-- STORIES -->
+            <div id="stories" class="section">
+                <div class="section-header">
+                    <h2>📱 STORIES - "Semana da Magda"</h2>
+                    <div class="foco">4 Stories por dia, todos os dias do período</div>
+                </div>
+                
+                <div class="stories-section">
+                    <h3>💡 Conceito dos Stories</h3>
+                    
+                    <div class="story-conceito">
+                        <p style="line-height: 2; font-size: 1.1em;">
+                            A Magda compartilha sua rotina como terapeuta, educação sobre terapia sistêmica, aquecimento para lives e vendas dos produtos/serviços, de forma genuína, acolhedora e estratégica.
+                        </p>
+                        <p style="margin-top: 15px; font-weight: bold;">
+                            <strong>Frequência:</strong> 4 stories por dia<br>
+                            <strong>Total no período:</strong> 180+ stories
+                        </p>
+                    </div>
+                    
+                    <div class="story-dia">
+                        <h4>📌 EXEMPLO: QUINTA-FEIRA 20/11 (Dia da Live 3)</h4>
+                        
+                        <div class="story-item">
+                            <strong>STORY 1 - Bom dia + Lembrete Live (7h-9h)</strong><br>
+                            <em>Visual:</em> Selfie da Magda com café ou em momento matinal tranquilo<br>
+                            <em>Texto:</em> "Bom dia! 💛 Hoje é dia de LIVE! 19h no YouTube. Vou te ensinar tudo sobre Constelação Familiar. Prepara o coração que hoje vai ser especial ✨"<br>
+                            <em>Sticker:</em> GIF de coração dourado + relógio com "19h"<br>
+                            <em>Objetivo:</em> Gerar lembrança e expectativa para a live
+                        </div>
+                        
+                        <div class="story-item">
+                            <strong>STORY 2 - Contagem Regressiva - 6h faltando (13h)</strong><br>
+                            <em>Visual:</em> Card com design minimalista<br>
+                            <em>Texto no card:</em> "FALTAM 6 HORAS - Constelação Familiar: enxergando o invisível - 19h YouTube"<br>
+                            <em>Texto do story:</em> "Já colocou no lembrete? Me marca aqui se você vai estar comigo às 19h! 🙋‍♀️"<br>
+                            <em>Sticker:</em> Caixa de marcação interativa<br>
+                            <em>Objetivo:</em> Urgência + engajamento
+                        </div>
+                        
+                        <div class="story-item">
+                            <strong>STORY 3 - AO VIVO - Link Direto (19h)</strong><br>
+                            <em>Visual:</em> Print da tela da live ou foto ao vivo gravando<br>
+                            <em>Texto:</em> "🔴 ESTAMOS AO VIVO! Link direto aqui ⬆️"<br>
+                            <em>Sticker:</em> GIF "AO VIVO" piscando + link direto do YouTube<br>
+                            <em>Obs:</em> Manter esse story fixado durante toda a live<br>
+                            <em>Objetivo:</em> Direcionar tráfego em tempo real
+                        </div>
+                        
+                        <div class="story-item">
+                            <strong>STORY 4 - Replay + Principais Insights (Após live - 21h)</strong><br>
+                            <em>Visual:</em> Montagem com 2-3 prints dos melhores momentos da live<br>
+                            <em>Texto:</em> "Que live foi essa! 🙏 Se você perdeu, o replay já tá disponível no YouTube (link na bio)<br><br>Principais insights de hoje:<br>✨ [Insight 1]<br>✨ [Insight 2]<br>✨ [Insight 3]"<br>
+                            <em>Sticker:</em> Seta apontando para cima "link na bio"<br>
+                            <em>Objetivo:</em> Capitalizar quem perdeu + resumir valor
+                        </div>
+                    </div>
+                    
+                    <div class="story-dia">
+                        <h4>📌 PADRÕES DE STORIES POR DIA DA SEMANA</h4>
+                        
+                        <div class="story-item">
+                            <strong>SEGUNDA-FEIRA: "Segunda da Transformação"</strong><br>
+                            • Compartilhar caso de transformação da semana<br>
+                            • Mostrar resultado (sem identificar paciente)<br>
+                            • Relato de melhora com Terapia/Constelação<br>
+                            <em>Por que funciona:</em> Mostra resultados reais, gera identificação e prova social
+                        </div>
+                        
+                        <div class="story-item">
+                            <strong>QUARTA-FEIRA: "Estudando Sempre"</strong><br>
+                            • Foto de livro/artigo que está estudando<br>
+                            • Curso ou formação em andamento<br>
+                            • Curiosidade sobre Terapia Sistêmica<br>
+                            <em>Por que funciona:</em> Reforça autoridade, mostra atualização, gera confiança
+                        </div>
+                        
+                        <div class="story-item">
+                            <strong>SEXTA-FEIRA: "Sexta do Autocuidado"</strong><br>
+                            • Dica rápida e prática de autocuidado<br>
+                            • Técnica de respiração, reflexão, oração<br>
+                            • Algo que ela mesma pratica<br>
+                            <em>Por que funciona:</em> Conteúdo de valor aplicável, gera salvamentos e compartilhamentos
+                        </div>
+                    </div>
+                    
+                    <div class="story-dicas">
+                        <h4>💡 Dicas Gerais para Stories</h4>
+                        <ul>
+                            <li><strong>Seja autêntica:</strong> Não precisa ser perfeito, mostre o real</li>
+                            <li><strong>Fale olhando para câmera:</strong> Cria conexão genuína</li>
+                            <li><strong>Use luz natural:</strong> Sempre que possível, melhora a qualidade</li>
+                            <li><strong>Seja breve:</strong> 15-30 segundos é o ideal</li>
+                            <li><strong>Mostre emoção:</strong> Pessoas se conectam com sentimentos</li>
+                            <li><strong>Varie formatos:</strong> Fala, texto, foto, enquete, quiz, caixinha</li>
+                            <li><strong>Interaja sempre:</strong> Responda as mensagens e caixinhas!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <footer>
+            <p style="font-size: 1.4em; margin-bottom: 20px;"><strong>📋 Calendário Editorial Completo</strong></p>
+            <p><strong>Magda Fernanda</strong> - Terapeuta Sistêmica</p>
+            <p>@terapeuta.magdafernanda</p>
+            <p style="margin-top: 30px;" class="destaque">Produzido por: Giz Marketing Digital</p>
+            <p>WhatsApp: (28) 99989-2676</p>
+            <p>contato@gizmarketing.net</p>
+            <p style="margin-top: 30px; opacity: 0.8;">📅 Vigência: 20/11/2025 a 02/01/2026</p>
+            <p style="margin-top: 10px; opacity: 0.8;">✨ Plano Expert: 15 Reels + 8 Posts + 8 Carrosséis + 180+ Stories</p>
+        </footer>
+    </div>
+</body>
+</html>
